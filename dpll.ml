@@ -38,9 +38,17 @@ let coloriage = [[1;2;3];[4;5;6];[7;8;9];[10;11;12];[13;14;15];[16;17;18];[19;20
 (* simplifie : int -> int list list -> int list list 
    applique la simplification de l'ensemble des clauses en mettant
    le littéral l à vrai *)
+
+(* supprimer clause si la clause contient l
+   supprimer tous les -l si clause contient -l *)
 let simplifie l clauses =
-  (* à compléter *)
-  []
+ let aux c = 
+    if mem l c then None 
+    else Some (let aux2 x = 
+              if x = -l then None 
+              else Some x 
+              in filter_map aux2 c)
+ in filter_map aux clauses;;
 
 (* solveur_split : int list list -> int list -> int list option
    exemple d'utilisation de `simplifie' *)
@@ -59,8 +67,8 @@ let rec solveur_split clauses interpretation =
   | _    -> branche
 
 (* tests *)
-(* let () = print_modele (solveur_split systeme []) *)
-(* let () = print_modele (solveur_split coloriage []) *)
+ let () = print_modele (solveur_split systeme []) 
+ let () = print_modele (solveur_split coloriage []) 
 
 (* solveur dpll récursif *)
     
@@ -69,26 +77,38 @@ let rec solveur_split clauses interpretation =
       le littéral de cette clause unitaire ;
     - sinon, lève une exception `Not_found' *)
 let unitaire clauses =
-  (* à compléter *)
-  0
+  let rec aux l =
+    match l with
+    [] -> raise Not_found
+    |a::rest -> 
+      match a with
+      [a] -> a
+      |_-> aux rest
+    in aux clauses;;
+
     
 (* pur : int list list -> int
     - si `clauses' contient au moins un littéral pur, retourne
       ce littéral ;
     - sinon, lève une exception `Failure "pas de littéral pur"' *)
 let pur clauses =
-  (* à compléter *)
-  0
+   (* à compléter *)
+   0
 
 (* solveur_dpll_rec : int list list -> int list -> int list option *)
+
 let rec solveur_dpll_rec clauses interpretation =
   (* à compléter *)
   None
+
 
 (* tests *)
 (* let () = print_modele (solveur_dpll_rec systeme []) *)
 (* let () = print_modele (solveur_dpll_rec coloriage []) *)
 
 let () =
-  let clauses = Dimacs.parse Sys.argv.(1) in
-  print_modele (solveur_dpll_rec clauses [])
+ (* let clauses = Dimacs.parse Sys.argv.(1) in
+  print_modele (solveur_dpll_rec clauses []) *)
+
+ let clauses = exemple_7_4 in
+ print_int (unitaire clauses)
