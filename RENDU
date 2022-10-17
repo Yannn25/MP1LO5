@@ -19,7 +19,7 @@ Questions sur votre code
    et que ensuite `./dpll sudoku-4x4.cnf` donne la réponse attendue (voir
    fichier README) ?
 
-Oui
+**à remplir**
 ---
 
 1. Avez-vous utilisé la fonction `filter_map` (donné dans dpll.ml)
