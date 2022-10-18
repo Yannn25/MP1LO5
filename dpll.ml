@@ -82,8 +82,8 @@ let unitaire clauses =
     [] -> raise Not_found
     |a::rest -> 
       match a with
-      [a] -> a
-      |_-> aux rest
+      | [a] -> a
+      | _ -> aux rest
     in aux clauses;;
 
     
@@ -92,8 +92,15 @@ let unitaire clauses =
       ce littéral ;
     - sinon, lève une exception `Failure "pas de littéral pur"' *)
 let pur clauses =
-   (* à compléter *)
-   0
+  let rec aux l acc = 
+    match l with   
+    | [] -> raise (Failure "pas de littéral pur")
+    | c :: rest -> 
+      if not (List.mem c acc || List.mem (-c) acc) && not(List.mem (-c) rest) then c
+      else aux rest (c :: acc)
+    in aux (List.flatten(clauses)) []
+    
+   
 
 (* solveur_dpll_rec : int list list -> int list -> int list option *)
 
