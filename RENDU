@@ -19,7 +19,7 @@ Questions sur votre code
    et que ensuite `./dpll sudoku-4x4.cnf` donne la réponse attendue (voir
    fichier README) ?
 
-**à remplir**
+	-Oui
 ---
 
 1. Avez-vous utilisé la fonction `filter_map` (donné dans dpll.ml)
@@ -29,7 +29,13 @@ Questions sur votre code
    - Si non, expliquez en quelques phrases en français comment
      fonctionne votre implémentation de `simplifie`.
 
-**à remplir**
+	-Oui
+
+	Puisque la fonction 'filter_map filter list' retourne la nouvelle liste de 'list' filtré par filter,
+	nous avons fait une filtre "aux c" qui vérifie si littéral l est dans l'ensemble des clauses c, alors retourne None.
+	Et à travers "aux2 x", si littéral -l est dans l'ensemble des clauses c, retourne Some None.
+	A la fin, grâce à 'filter_map aux clauses', la clause qui contient littéral l va être supprimée et
+	tous les littéraux -l vont être supprimés dans les clauses.
 
 ---
 
@@ -42,7 +48,12 @@ Questions sur votre code
    comment ces fonctions auxiliaires sont utilisées dans votre
    implémentation de la fonction `unitaire`.
 
-**à remplir**
+   	-Nous avons écrit la fonction auxiliaire 'aux l'.
+	1. lever une exception lors qu'il n'existe pas de clause unitaire dans 'clauses'
+	   ou 'clauses' est vide. 
+	2. Si 'clauses' n'est pas vide, alors vérifier si la clause 'c' de 'clauses' est une clause unitaire.
+	   Si elle est unitaire, retourne le littéral c de cette clause unitaire.
+	3. Si la clause 'c' n'est pas unitaire, alors continuer à rechercher une clause unitaire dans le reste de 'clauses'.
 
 ---
 
@@ -59,7 +70,11 @@ Questions sur votre code
    `solveur_split` et `solveur_dpll_rec` ont un comportement
    différent, et expliquez les différences entre ces deux fonctions.
 
-**à remplir**
+	-la fonction 'solveur_dpll_rec' vérifie si clauses contient des clauses unitaire(s)/pur(s) 
+	alors que la fonction 'solveur_split' ne le vérifie pas.
+
+	un exemple d'une formule : (P ∧ (Q ∧ ¬R)) ∨ R	(vu en cours)
+ 
 
 ---
 
