@@ -32,7 +32,7 @@ Questions sur votre code
 	-Oui
 
 	Puisque la fonction 'filter_map filter list' retourne la nouvelle liste de 'list' filtré par filter,
-	nous avons fait une filtre "aux c" qui vérifie si le littéral l est dans l'ensemble des clauses c, alors elle retourne None.
+	nous avons fait une filtre 'aux c' qui vérifie si le littéral l est dans l'ensemble des clauses c, alors elle retourne None.
 	Et à travers "aux2 x", si le littéral -l est dans l'ensemble des clauses c, on retourne Some None.
 	A la fin, grâce à 'filter_map aux clauses', la clause qui contient littéral l va être supprimée et
 	tous les littéraux -l vont être supprimés dans les clauses.
@@ -62,10 +62,11 @@ Questions sur votre code
    quelques phrases en français comment ces fonctions auxiliaires sont
    utilisées dans votre implémentation de la fonction `pur`.
 
-   Pour la fonction auxiliaire de pur nous avons procéder a peu près de la meme manière que unitaire:
+   Pour la fonction auxiliaire de pur nous avons procéder à peu près de la même manière que unitaire:
    1. lever une exception si il n'existe pas de clause pur dans 'clauses'
 	   ou dans le cas ou 'clauses' est vide.
-   2. Ensuite on vérifie que 'c' est toujours de la meme forme dans toutes les autres clausses (aussi bien les clauses que nous avons entierement vérifié que le reste). Si 'c' est pur alors on le renvoi.
+   2. Ensuite on vérifie que 'c' est toujours de la même forme dans toutes les autres clauses 
+(aussi bien les clauses que nous avons entièrement vérifié que le reste). Si 'c' est pur alors on le renvoie.
    3. Sinon on relance notre algo (aux) sur le reste des clauses, tout en ajoutant 'c' dans 'acc'.
 ---
 
@@ -77,6 +78,7 @@ Questions sur votre code
 	alors que la fonction 'solveur_split' ne le vérifie pas.
 
 	un exemple d'une formule : (P ∧ (Q ∧ ¬R)) ∨ R	(vu en cours)
+			          (1 ∧ (2 ∧ -3)) ∨ 3	(version DIMACS)
  
 
 ---

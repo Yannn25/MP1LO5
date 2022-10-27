@@ -43,7 +43,7 @@ let coloriage = [[1;2;3];[4;5;6];[7;8;9];[10;11;12];[13;14;15];[16;17;18];[19;20
    supprimer tous les -l si clause contient -l *)
 let simplifie l clauses =
  let aux c = 
-    if mem l c then None 
+    if mem l c then None
     else Some (let aux2 x = 
               if x = -l then None 
               else Some x 
@@ -80,10 +80,10 @@ let rec solveur_split clauses interpretation =
 let unitaire clauses =
   let rec aux l =
     match l with
-    | [] -> raise Not_found (* lever d'une exception si aucun littéral unitaire trouver *)
+    | [] -> raise Not_found (* lever une exception si aucun littéral unitaire trouvé *)
     | c :: rest -> 
       match c with
-      (* On renvoi 'c' dans le cas ou il serait l'unique littéral d'une clause *)
+      (* On renvoie 'c' dans le cas où il serait l'unique littéral d'une clause *)
       | [c] -> c
       (* Sinon on continue notre recherche *)
       | _ -> aux rest
@@ -99,15 +99,17 @@ let pur clauses =
     match l with   
     | [] -> raise (Failure "pas de littéral pur") (* fin d'algo si aucun littéral n'est pur *)
     | c :: rest -> 
-      (*Dans un 1er temps on vérifie bien que 'c' n'est pas contenu dans acc, ensuite 
+      (* Dans un premier temps, on vérifie bien que 'c' n'est pas contenu dans acc, ensuite 
          on vérifie que la négation de 'c' n'est pas contenu dans le reste*)
       if not (List.mem c acc || List.mem (-c) acc) && not(List.mem (-c) rest) then c
-      (* Appel récursive sur le reste des clauses restantes et en ajoutant 'c' a 'acc' *)
+      (* Appel récursif sur le reste des clauses restantes et en ajoutant 'c' à 'acc' *)
       else aux rest (c :: acc)
     in aux (List.flatten(clauses)) []
   
 (* solveur_dpll_rec : int list list -> int list -> int list option *)
 
+(*On vérifie d'abord s'il y a des clauses unitaires/purs.
+  S'il n'y a pas de clauses unitaries/purs, on considère les splits.*)
 
 let rec solveur_dpll_rec clauses interpretation =
   (* l'ensemble vide de clauses est satisfiable *)
