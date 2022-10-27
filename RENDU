@@ -32,8 +32,8 @@ Questions sur votre code
 	-Oui
 
 	Puisque la fonction 'filter_map filter list' retourne la nouvelle liste de 'list' filtré par filter,
-	nous avons fait une filtre "aux c" qui vérifie si littéral l est dans l'ensemble des clauses c, alors retourne None.
-	Et à travers "aux2 x", si littéral -l est dans l'ensemble des clauses c, retourne Some None.
+	nous avons fait une filtre "aux c" qui vérifie si le littéral l est dans l'ensemble des clauses c, alors elle retourne None.
+	Et à travers "aux2 x", si le littéral -l est dans l'ensemble des clauses c, on retourne Some None.
 	A la fin, grâce à 'filter_map aux clauses', la clause qui contient littéral l va être supprimée et
 	tous les littéraux -l vont être supprimés dans les clauses.
 
@@ -50,9 +50,9 @@ Questions sur votre code
 
    	-Nous avons écrit la fonction auxiliaire 'aux l'.
 	1. lever une exception lors qu'il n'existe pas de clause unitaire dans 'clauses'
-	   ou 'clauses' est vide. 
-	2. Si 'clauses' n'est pas vide, alors vérifier si la clause 'c' de 'clauses' est une clause unitaire.
-	   Si elle est unitaire, retourne le littéral c de cette clause unitaire.
+	   ou si 'clauses' est vide. 
+	2. Si 'clauses' n'est pas vide, alors on vérifie si la clause 'c' de 'clauses' est une clause unitaire.
+	   Si elle est unitaire, elle retourne le littéral c de cette clause unitaire.
 	3. Si la clause 'c' n'est pas unitaire, alors continuer à rechercher une clause unitaire dans le reste de 'clauses'.
 
 ---
@@ -62,8 +62,11 @@ Questions sur votre code
    quelques phrases en français comment ces fonctions auxiliaires sont
    utilisées dans votre implémentation de la fonction `pur`.
 
-**à remplir**
-
+   Pour la fonction auxiliaire de pur nous avons procéder a peu près de la meme manière que unitaire:
+   1. lever une exception si il n'existe pas de clause pur dans 'clauses'
+	   ou dans le cas ou 'clauses' est vide.
+   2. Ensuite on vérifie que 'c' est toujours de la meme forme dans toutes les autres clausses (aussi bien les clauses que nous avons entierement vérifié que le reste). Si 'c' est pur alors on le renvoi.
+   3. Sinon on relance notre algo (aux) sur le reste des clauses, tout en ajoutant 'c' dans 'acc'.
 ---
 
 4. Donnez un exemple d'une formule pour laquelle les deux fonctions
@@ -80,7 +83,7 @@ Questions sur votre code
 
 5. Avez-vous d'autres remarques sur votre rendu ? (question optionnelle)
 
-**à remplir**
+   Rien de particulier.
 
 ---
 

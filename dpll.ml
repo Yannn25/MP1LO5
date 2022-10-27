@@ -80,10 +80,12 @@ let rec solveur_split clauses interpretation =
 let unitaire clauses =
   let rec aux l =
     match l with
-    | [] -> raise Not_found
+    | [] -> raise Not_found (* lever d'une exception si aucun littéral unitaire trouver *)
     | c :: rest -> 
       match c with
+      (* On renvoi 'c' dans le cas ou il serait l'unique littéral d'une clause *)
       | [c] -> c
+      (* Sinon on continue notre recherche *)
       | _ -> aux rest
     in aux clauses
 
@@ -95,15 +97,17 @@ let unitaire clauses =
 let pur clauses =
   let rec aux l acc = 
     match l with   
-    | [] -> raise (Failure "pas de littéral pur")
+    | [] -> raise (Failure "pas de littéral pur") (* fin d'algo si aucun littéral n'est pur *)
     | c :: rest -> 
+      (*Dans un 1er temps on vérifie bien que 'c' n'est pas contenu dans acc, ensuite 
+         on vérifie que la négation de 'c' n'est pas contenu dans le reste*)
       if not (List.mem c acc || List.mem (-c) acc) && not(List.mem (-c) rest) then c
+      (* Appel récursive sur le reste des clauses restantes et en ajoutant 'c' a 'acc' *)
       else aux rest (c :: acc)
     in aux (List.flatten(clauses)) []
   
 (* solveur_dpll_rec : int list list -> int list -> int list option *)
 
-(* faut faire des commentaires.. *)
 
 let rec solveur_dpll_rec clauses interpretation =
   (* l'ensemble vide de clauses est satisfiable *)
