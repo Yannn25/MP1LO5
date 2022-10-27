@@ -42,11 +42,11 @@ let coloriage = [[1;2;3];[4;5;6];[7;8;9];[10;11;12];[13;14;15];[16;17;18];[19;20
 (* supprimer clause si la clause contient l
    supprimer tous les -l si clause contient -l *)
 let simplifie l clauses =
- let aux c = 
-    if mem l c then None 
-    else Some (let aux2 x = 
-              if x = -l then None 
-              else Some x 
+ let aux c = (* Premier filtre*)
+    if mem l c then None (* l contenu dans c donc aucun problème on le supprime avec None*)
+    else Some (let aux2 x = (*Second filtre *)
+              if x = -l then None (* Suppresion du litteral '-l' si contenu dans la clause *)
+              else Some x (* relance de notre algo *)
               in filter_map aux2 c)
  in filter_map aux clauses;;
 

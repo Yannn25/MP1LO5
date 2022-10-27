@@ -65,7 +65,7 @@ Questions sur votre code
    Pour la fonction auxiliaire de pur nous avons procéder a peu près de la meme manière que unitaire:
    1. lever une exception si il n'existe pas de clause pur dans 'clauses'
 	   ou dans le cas ou 'clauses' est vide.
-   2. Ensuite on vérifie que 'c' est toujours de la meme forme dans toutes les autres clausses (aussi bien les clauses que nous avons entierement vérifié que le reste). Si 'c' est pur alors on le renvoi.
+   2. Ensuite on vérifie que 'c' est toujours de la meme forme dans toutes les autres clausses (aussi bien les clauses que nous avons entièrement vérifié que le reste). Si 'c' est pur alors on le renvoi.
    3. Sinon on relance notre algo (aux) sur le reste des clauses, tout en ajoutant 'c' dans 'acc'.
 ---
 
